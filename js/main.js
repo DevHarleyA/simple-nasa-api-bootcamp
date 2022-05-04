@@ -12,9 +12,18 @@ function findDaily() {
             console.log(data.title)
             console.log(data.hdurl)
             document.querySelector('.title').innerText = 'Photo Title: ' + data.title
-            document.querySelector('img').src = data.hdurl
-            document.querySelector('img').classList.remove('hidden')
             document.querySelector('.description').innerText = 'Photo Description: ' + data.explanation
+            if (data.media_type === 'image'){
+                document.querySelector('img').src = data.hdurl
+                document.querySelector('img').classList.remove('hidden')
+                document.querySelector('iframe').classList.add('hidden')
+            } else if (data.media_type === 'video') {
+                document.querySelector('img').classList.add('hidden')
+                document.querySelector('iframe').src = data.url
+                document.querySelector('iframe').classList.remove('hidden')
+            } else {
+                alert('Unsupported Media Type')
+            }
         })
         .catch(err => {
             console.log(`error ${err}`)
