@@ -2,7 +2,8 @@ document.querySelector('.submitBtn').addEventListener('click', findDaily)
 
 function findDaily() {
     const date = document.querySelector('input').value
-    const url = `https://api.nasa.gov/planetary/apod?api_key=MZA7cry4WIRGEdB9y1Mw2RQxIdyJN6hz1fuvu83C&date=${date}`
+    const key = config.MY_KEY
+    const url = `https://api.nasa.gov/planetary/apod?api_key=${key}&date=${date}`
 
     fetch(url)
         .then(res => res.json())
